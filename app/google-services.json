@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "3580387373",
+    "firebase_url": "https://insduv2.firebaseio.com",
+    "project_id": "insduv2",
+    "storage_bucket": "insduv2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:3580387373:android:e3879c101957ad45",
+        "android_client_info": {
+          "package_name": "tk.aibolik.app.insdu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "3580387373-4do3ptfusamncdrcup8eifggcoc9og1q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDA4Z-sSpTNE-BfTrhv86ywnyVRG1q7gT0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
