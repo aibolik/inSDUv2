@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="info_titles">
+        <item>About SDU</item>
+        <item>Faculties</item>
+        <item>Clubs</item>
+        <item>Else</item>
+    </string-array>
+
+    <string-array name="info_descriptions">
+        <item>The Palais Garnier which locates in Paris was built from 1861 for
+        the Paris Opera.</item>
+        <item>The Palais Garnier which locates in Paris was built from 1861 for
+        the Paris Opera.</item>
+        <item>The Palais Garnier which locates in Paris was built from 1861 for
+        the Paris Opera.</item>
+        <item>The Palais Garnier which locates in Paris was built from 1861 for
+        the Paris Opera.</item>
+    </string-array>
+
+    <array name="info_pictures">
+        <item>@drawable/a</item>
+        <item>@drawable/a</item>
+        <item>@drawable/a</item>
+        <item>@drawable/a</item>
+    </array>
+
+</resources>
