@@ -1,11 +1,12 @@
-package tk.aibolik.app.insdu.fragments;
+package tk.aibolik.app.insdu.fragments.publics;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.hannesdorfmann.mosby.mvp.MvpFragment;
 
 import tk.aibolik.app.insdu.R;
 
@@ -14,9 +15,14 @@ import tk.aibolik.app.insdu.R;
  * Working on "inSDUv2". Mars Studio
  * You can contact me at: aibolikdev@gmail.com
  */
-public class PublicFragment extends Fragment {
+public class PublicFragment extends MvpFragment<PublicView, PublicPresenter> {
 
     public PublicFragment() {}
+
+    @Override
+    public PublicPresenter createPresenter() {
+        return new PublicPresenter();
+    }
 
     public static PublicFragment newInstance() {
         return new PublicFragment();

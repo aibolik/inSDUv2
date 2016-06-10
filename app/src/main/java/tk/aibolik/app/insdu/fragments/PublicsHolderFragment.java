@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tk.aibolik.app.insdu.R;
+import tk.aibolik.app.insdu.fragments.publics.PublicFragment;
 
 /**
  * Created by Aibol Kussain on Jun 09, 2016.
@@ -50,9 +51,9 @@ public class PublicsHolderFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getActivity().getSupportFragmentManager());
-        adapter.addFragment(new PublicFragment(), "SDU");
-        adapter.addFragment(new PublicFragment(), "SDU Life");
-        adapter.addFragment(new PublicFragment(), "SDU Love");
+        adapter.addFragment(PublicFragment.newInstance(), "SDU");
+        adapter.addFragment(PublicFragment.newInstance(), "SDU Life");
+        adapter.addFragment(PublicFragment.newInstance(), "SDU Love");
         viewPager.setAdapter(adapter);
     }
 

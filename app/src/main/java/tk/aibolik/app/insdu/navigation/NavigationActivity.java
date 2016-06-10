@@ -1,5 +1,6 @@
 package tk.aibolik.app.insdu.navigation;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -24,6 +26,8 @@ public class NavigationActivity extends AppCompatActivity {
 
     @Bind(R.id.drawer)
     DrawerLayout mDrawerLayout;
+    @Bind(R.id.toolbar_shadow)
+    View mToolbarShadow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,10 @@ public class NavigationActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
 
         ButterKnife.bind(this);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mToolbarShadow.setVisibility(View.GONE);
+        }
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         if(navigationView != null) {
