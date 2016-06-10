@@ -18,6 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".InfoDetailActivity"
+            android:parentActivityName=".navigation.NavigationActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".navigation.NavigationActivity" />
+        </activity>
     </application>
 
 </manifest>

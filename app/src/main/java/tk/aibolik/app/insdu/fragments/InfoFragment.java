@@ -2,6 +2,7 @@ package tk.aibolik.app.insdu.fragments;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import tk.aibolik.app.insdu.InfoDetailActivity;
 import tk.aibolik.app.insdu.R;
 import tk.aibolik.app.insdu.data.InfoItem;
 
@@ -55,7 +57,10 @@ public class InfoFragment extends Fragment {
     InfoAdapter.InfoItemListener mItemListener = new InfoAdapter.InfoItemListener() {
         @Override
         public void onItemClick(InfoItem item) {
-
+            Context context = getActivity();
+            Intent intent = new Intent(context, InfoDetailActivity.class);
+            intent.putExtra(InfoDetailActivity.EXTRA_INFO_ITEM, item);
+            context.startActivity(intent);
         }
     };
 

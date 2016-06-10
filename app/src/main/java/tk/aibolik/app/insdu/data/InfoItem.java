@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import tk.aibolik.app.insdu.R;
@@ -13,7 +14,7 @@ import tk.aibolik.app.insdu.R;
  * Working on "inSDUv2". Mars Studio
  * You can contact me at: aibolikdev@gmail.com
  */
-public final class InfoItem {
+public final class InfoItem implements Serializable {
 
     private String mTitle;
     private String mDescription;

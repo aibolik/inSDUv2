@@ -18,6 +18,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import tk.aibolik.app.insdu.R;
 import tk.aibolik.app.insdu.fragments.InfoFragment;
+import tk.aibolik.app.insdu.fragments.PublicsHolderFragment;
 
 public class NavigationActivity extends AppCompatActivity {
 
@@ -68,12 +69,15 @@ public class NavigationActivity extends AppCompatActivity {
                             case R.id.nav_info:
                                 fragment = InfoFragment.newInstance();
                                 break;
+                            case R.id.nav_publics:
+                                fragment = PublicsHolderFragment.newInstance();
+                                break;
                             default:
                                 break;
                         }
                         if(fragment != null) {
                             getSupportFragmentManager().beginTransaction()
-                                    .add(R.id.contentFrame, fragment)
+                                    .replace(R.id.contentFrame, fragment)
                                     .commit();
                         }
                         // Close the navigation drawer when an item is selected.
