@@ -2,7 +2,10 @@
 <manifest package="tk.aibolik.app.insdu"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -18,12 +21,17 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".InfoDetailActivity"
+        <activity
+            android:name=".InfoDetailActivity"
             android:parentActivityName=".navigation.NavigationActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".navigation.NavigationActivity" />
+                android:value=".navigation.NavigationActivity"/>
         </activity>
+        <activity
+            android:name="com.vk.sdk.VKServiceActivity"
+            android:label="ServiceActivity"
+            android:theme="@style/VK.Transparent"/>
     </application>
 
 </manifest>

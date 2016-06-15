@@ -34,4 +34,11 @@ public class PublicFragment extends MvpFragment<PublicView, PublicPresenter> {
         View view = inflater.inflate(R.layout.fragment_public, container, false);
         return view;
     }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        presenter.getPosts();
+//        presenter.getLocalPosts();
+    }
 }
