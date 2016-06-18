@@ -54,7 +54,7 @@
             android:layout_alignBottom="@+id/card_image"
             android:layout_alignRight="@+id/card_image"
             android:layout_alignEnd="@+id/card_image"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="@dimen/md_keylines"
             android:layout_marginRight="@dimen/md_keylines"
             android:layout_marginEnd="@dimen/md_keylines"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"

@@ -60,8 +60,6 @@ public class PublicFragment
     private String mPageTitle;
     private String mPageId;
 
-    private boolean isFragmentInitiated;
-
     @Override
     public PublicPresenter createPresenter() {
         return new PublicPresenter();
@@ -77,7 +75,6 @@ public class PublicFragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        isFragmentInitiated = false;
         if (getArguments() != null) {
             Bundle args = getArguments();
             mPageTitle = args.getString(KEY_TITLE);
@@ -113,13 +110,11 @@ public class PublicFragment
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if(!isFragmentInitiated) {
-            try {
-                Utility.checkInternetConnection(getActivity());
-                presenter.getPosts(mPageId, 0, false);
-            } catch (SocketException e) {
-                showMessage(e.getMessage());
-            }
+        try {
+            Utility.checkInternetConnection(getActivity());
+            presenter.getPosts(mPageId, 0, false);
+        } catch (SocketException e) {
+            showMessage(e.getMessage());
         }
     }
 
@@ -141,10 +136,9 @@ public class PublicFragment
     public void setStories(List<Story> storiesList, LinkedHashMap<Integer, List<Attachment>> map, boolean loadMore) {
         mEmptyView.setVisibility(View.GONE);
         mPosts.setVisibility(View.VISIBLE);
-        if(loadMore) {
+        if (loadMore) {
             mAdapter.addStories(storiesList, map);
-        }
-        else {
+        } else {
             mAdapter.setStories(storiesList, map);
         }
     }
