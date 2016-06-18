@@ -1,8 +1,5 @@
 package tk.aibolik.app.insdu.data.post;
 
-import org.litepal.annotation.Column;
-import org.litepal.crud.DataSupport;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +8,8 @@ import java.util.List;
  * Working on "inSDUv2". Mars Studio
  * You can contact me at: aibolikdev@gmail.com
  */
-public class Story extends DataSupport {
+public class Story {
 
-    @Column(unique = true)
     int id;
 
     long date;
@@ -22,8 +18,8 @@ public class Story extends DataSupport {
 
     int likeCount;
     int repostCount;
+    int commentCount;
 
-    @Column(ignore = true)
     private List<Attachment> attachments = new ArrayList<>();
 
     public void addAttachment(Attachment a) {
@@ -77,4 +73,13 @@ public class Story extends DataSupport {
     public void setRepostCount(int repostCount) {
         this.repostCount = repostCount;
     }
+
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
+    }
 }
+

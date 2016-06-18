@@ -1,29 +1,17 @@
 package tk.aibolik.app.insdu.data.post;
 
-import org.litepal.crud.DataSupport;
-
 /**
  * Created by Aibol Kussain on Jun 14, 2016.
  * Working on "inSDUv2". Mars Studio
  * You can contact me at: aibolikdev@gmail.com
  */
-public class Attachment extends DataSupport {
+public class Attachment {
 
     public static final String TYPE_PHOTO = "photo";
     public static final String TYPE_VIDEO = "video";
     public static final String TYPE_LINK = "link";
 
     String type;
-
-    Story story;
-
-    public Story getStory() {
-        return story;
-    }
-
-    public void setStory(Story story) {
-        this.story = story;
-    }
 
     String cover_url;
 

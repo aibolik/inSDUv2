@@ -8,6 +8,7 @@
     <color name="divider">#1e000000</color>
     <color name="transparent">#00000000</color>
     <color name="text_primary">#de000000</color>
+    <color name="text_background">#78000000</color>
 
     <!-- basic color -->
     <color name="white">#FFFFFF</color>

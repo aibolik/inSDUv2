@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,8 @@ import tk.aibolik.app.insdu.fragments.publics.PublicFragment;
  */
 public class PublicsHolderFragment extends Fragment {
 
+    private static final String TAG = PublicsHolderFragment.class.getSimpleName();
+
     public PublicsHolderFragment() {}
 
     public static PublicsHolderFragment newInstance() {
@@ -34,6 +37,7 @@ public class PublicsHolderFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView: ");
         View view = inflater.inflate(R.layout.fragment_publics, container, false);
 
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
@@ -51,9 +55,23 @@ public class PublicsHolderFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getActivity().getSupportFragmentManager());
-        adapter.addFragment(PublicFragment.newInstance(), "SDU");
-        adapter.addFragment(PublicFragment.newInstance(), "SDU Life");
-        adapter.addFragment(PublicFragment.newInstance(), "SDU Love");
+        viewPager.setOffscreenPageLimit(2);
+
+
+        Bundle sdu = new Bundle();
+        sdu.putString(PublicFragment.KEY_TITLE, "SDU");
+        sdu.putString(PublicFragment.KEY_PAGE_ID, "-23192814");
+        adapter.addFragment(PublicFragment.newInstance(sdu), "SDU");
+
+        Bundle sduLife = new Bundle();
+        sduLife.putString(PublicFragment.KEY_TITLE, "SDU Life");
+        sduLife.putString(PublicFragment.KEY_PAGE_ID, "-53746469");
+        adapter.addFragment(PublicFragment.newInstance(sduLife), "SDU Life");
+
+        Bundle sduLove = new Bundle();
+        sduLove.putString(PublicFragment.KEY_TITLE, "SDU Love");
+        sduLove.putString(PublicFragment.KEY_PAGE_ID, "-61889571");
+        adapter.addFragment(PublicFragment.newInstance(sduLove), "SDU Love");
         viewPager.setAdapter(adapter);
     }
 
