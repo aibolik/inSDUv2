@@ -1,4 +1,4 @@
-package tk.aibolik.app.insdu.fragments;
+package tk.aibolik.app.insdu.fragments.map;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,33 +11,52 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import tk.aibolik.app.insdu.R;
-import tk.aibolik.app.insdu.fragments.publics.PublicFragment;
+import tk.aibolik.app.insdu.fragments.map.places.PlacesFragment;
 
 /**
- * Created by Aibol Kussain on Jun 09, 2016.
+ * Created by Aibol Kussain on Jun 18, 2016.
  * Working on "inSDUv2". Mars Studio
  * You can contact me at: aibolikdev@gmail.com
  */
-public class PublicsHolderFragment extends Fragment {
+public class MapHolderFragment extends Fragment implements OnMapReadyCallback {
 
-    private static final String TAG = PublicsHolderFragment.class.getSimpleName();
+    private static final String TAG = MapHolderFragment.class.getSimpleName();
 
-    public PublicsHolderFragment() {}
+    public static final CameraPosition KASKELEN =
+            new CameraPosition.Builder().target(new LatLng(-33.891614, 151.276417))
+                    .zoom(15.5f)
+                    .bearing(300)
+                    .build();
 
-    public static PublicsHolderFragment newInstance() {
-        return new PublicsHolderFragment();
+    public static final CameraPosition SDU =
+            new CameraPosition.Builder().target(new LatLng(43.208292135715816, 76.66898366063833))
+                    .zoom(15.5f)
+                    .build();
+
+    private GoogleMap mMap;
+
+    public MapHolderFragment() {}
+
+    public static MapHolderFragment newInstance() {
+        return new MapHolderFragment();
     }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater,
-                             @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_publics, container, false);
-
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
@@ -45,7 +64,7 @@ public class PublicsHolderFragment extends Fragment {
         tabs.setTabTextColors(
                 getActivity().getResources().getColor(R.color.text_primary),
                 getActivity().getResources().getColor(R.color.colorAccent)
-                );
+        );
         tabs.setSelectedTabIndicatorColor(
                 getActivity().getResources().getColor(R.color.colorAccent)
         );
@@ -56,24 +75,22 @@ public class PublicsHolderFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getActivity().getSupportFragmentManager());
-        viewPager.setOffscreenPageLimit(2);
 
+        SupportMapFragment mapFragment = SupportMapFragment.newInstance();
 
-        Bundle sdu = new Bundle();
-        sdu.putString(PublicFragment.KEY_TITLE, "SDU");
-        sdu.putString(PublicFragment.KEY_PAGE_ID, "-23192814");
-        adapter.addFragment(PublicFragment.newInstance(sdu), "SDU");
+        adapter.addFragment(PlacesFragment.newInstance(), "Places");
+        adapter.addFragment(mapFragment, "Map");
 
-        Bundle sduLife = new Bundle();
-        sduLife.putString(PublicFragment.KEY_TITLE, "SDU Life");
-        sduLife.putString(PublicFragment.KEY_PAGE_ID, "-53746469");
-        adapter.addFragment(PublicFragment.newInstance(sduLife), "SDU Life");
+        mapFragment.getMapAsync(this);
 
-        Bundle sduLove = new Bundle();
-        sduLove.putString(PublicFragment.KEY_TITLE, "SDU Love");
-        sduLove.putString(PublicFragment.KEY_PAGE_ID, "-61889571");
-        adapter.addFragment(PublicFragment.newInstance(sduLove), "SDU Love");
         viewPager.setAdapter(adapter);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap map) {
+        mMap = map;
+
+        changeCamera(CameraUpdateFactory.newCameraPosition(SDU));
     }
 
     static class Adapter extends FragmentStatePagerAdapter {
@@ -105,4 +122,7 @@ public class PublicsHolderFragment extends Fragment {
         }
     }
 
+    private void changeCamera(CameraUpdate update) {
+        mMap.animateCamera(update, 1, null);
+    }
 }

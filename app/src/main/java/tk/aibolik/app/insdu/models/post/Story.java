@@ -1,4 +1,4 @@
-package tk.aibolik.app.insdu.data.post;
+package tk.aibolik.app.insdu.models.post;
 
 import java.util.ArrayList;
 import java.util.List;

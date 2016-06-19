@@ -16,8 +16,8 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import tk.aibolik.app.insdu.R;
-import tk.aibolik.app.insdu.data.post.Attachment;
-import tk.aibolik.app.insdu.data.post.Story;
+import tk.aibolik.app.insdu.models.post.Attachment;
+import tk.aibolik.app.insdu.models.post.Story;
 
 /**
  * Created by Aibol Kussain on Jun 18, 2016.

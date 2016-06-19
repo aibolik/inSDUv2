@@ -21,6 +21,7 @@ import butterknife.ButterKnife;
 import tk.aibolik.app.insdu.R;
 import tk.aibolik.app.insdu.fragments.InfoFragment;
 import tk.aibolik.app.insdu.fragments.PublicsHolderFragment;
+import tk.aibolik.app.insdu.fragments.map.MapHolderFragment;
 
 public class NavigationActivity extends AppCompatActivity {
 
@@ -76,6 +77,9 @@ public class NavigationActivity extends AppCompatActivity {
                         switch (menuItem.getItemId()) {
                             case R.id.nav_info:
                                 fragment = InfoFragment.newInstance();
+                                break;
+                            case R.id.nav_map:
+                                fragment = MapHolderFragment.newInstance();
                                 break;
                             case R.id.nav_publics:
                                 fragment = PublicsHolderFragment.newInstance();

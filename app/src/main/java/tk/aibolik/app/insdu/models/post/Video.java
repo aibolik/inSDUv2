@@ -1,4 +1,4 @@
-package tk.aibolik.app.insdu.data.post;
+package tk.aibolik.app.insdu.models.post;
 
 /**
  * Created by Aibol Kussain on Jun 14, 2016.

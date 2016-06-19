@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import tk.aibolik.app.insdu.data.post.Attachment;
-import tk.aibolik.app.insdu.data.post.Story;
+import tk.aibolik.app.insdu.models.post.Attachment;
+import tk.aibolik.app.insdu.models.post.Story;
 
 /**
  * Created by Aibol Kussain on Jun 10, 2016.

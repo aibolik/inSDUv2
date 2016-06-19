@@ -1,4 +1,4 @@
-package tk.aibolik.app.insdu.data;
+package tk.aibolik.app.insdu.models.info;
 
 import android.content.Context;
 import android.content.res.Resources;

@@ -24,8 +24,8 @@ import butterknife.ButterKnife;
 import tk.aibolik.app.insdu.R;
 import tk.aibolik.app.insdu.Utility;
 import tk.aibolik.app.insdu.custom.EndlessRecyclerViewScrollListener;
-import tk.aibolik.app.insdu.data.post.Attachment;
-import tk.aibolik.app.insdu.data.post.Story;
+import tk.aibolik.app.insdu.models.post.Attachment;
+import tk.aibolik.app.insdu.models.post.Story;
 
 /**
  * Created by Aibol Kussain on Jun 09, 2016.

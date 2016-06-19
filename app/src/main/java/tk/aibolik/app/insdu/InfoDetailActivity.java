@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import tk.aibolik.app.insdu.data.InfoItem;
+import tk.aibolik.app.insdu.models.info.InfoItem;
 
 public class InfoDetailActivity extends AppCompatActivity {
 

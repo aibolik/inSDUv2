@@ -20,7 +20,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import tk.aibolik.app.insdu.InfoDetailActivity;
 import tk.aibolik.app.insdu.R;
-import tk.aibolik.app.insdu.data.InfoItem;
+import tk.aibolik.app.insdu.models.info.InfoItem;
 
 /**
  * A simple {@link Fragment} subclass.
