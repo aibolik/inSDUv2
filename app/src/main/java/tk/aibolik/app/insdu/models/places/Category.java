@@ -1,6 +1,6 @@
 package tk.aibolik.app.insdu.models.places;
 
-import com.bignerdranch.expandablerecyclerview.Model.ParentObject;
+import com.bignerdranch.expandablerecyclerview.Model.ParentListItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
  * Working on "inSDUv2". Mars Studio
  * You can contact me at: aibolikdev@gmail.com
  */
-public class Category implements ParentObject {
+public class Category implements ParentListItem {
 
     public static final int EAT_OUT = 0;
     public static final int ATM_BANKS = 1;
@@ -29,8 +29,8 @@ public class Category implements ParentObject {
         this.description = description;
     }
 
-    public static final List<ParentObject> createCategories() {
-        List<ParentObject> categories = new ArrayList<>();
+    public static final List<ParentListItem> createCategories() {
+        List<ParentListItem> categories = new ArrayList<>();
 
         categories.add(new Category(0, "Eat out", "Places to eat out around SDU"));
         categories.add(new Category(1, "ATM and Banks", "ATMs to withdraw money and banks for money services"));
@@ -42,10 +42,12 @@ public class Category implements ParentObject {
         return categories;
     }
 
+
+
     @Override
-    public List<Object> getChildObjectList() {
+    public List<Place> getChildItemList() {
         ArrayList<Place> places = Place.createPlaces();
-        List<Object> childPlaces = new ArrayList<>();
+        List<Place> childPlaces = new ArrayList<>();
         for(Place place : places) {
             if(place.categoryId == category) {
                 childPlaces.add(place);
@@ -55,7 +57,7 @@ public class Category implements ParentObject {
     }
 
     @Override
-    public void setChildObjectList(List<Object> list) {
-
+    public boolean isInitiallyExpanded() {
+        return false;
     }
 }

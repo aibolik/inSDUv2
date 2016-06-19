@@ -18,26 +18,31 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import tk.aibolik.app.insdu.R;
 import tk.aibolik.app.insdu.fragments.map.places.PlacesFragment;
+import tk.aibolik.app.insdu.models.places.Pin;
 
 /**
  * Created by Aibol Kussain on Jun 18, 2016.
  * Working on "inSDUv2". Mars Studio
  * You can contact me at: aibolikdev@gmail.com
  */
-public class MapHolderFragment extends Fragment implements OnMapReadyCallback {
+public class MapHolderFragment
+        extends Fragment
+        implements OnMapReadyCallback, MapChangeListener {
 
     private static final String TAG = MapHolderFragment.class.getSimpleName();
 
     public static final CameraPosition KASKELEN =
-            new CameraPosition.Builder().target(new LatLng(-33.891614, 151.276417))
-                    .zoom(15.5f)
-                    .bearing(300)
+            new CameraPosition.Builder().target(new LatLng(43.20123718072794, 76.63677100092173))
+                    .zoom(12.7f)
                     .build();
 
     public static final CameraPosition SDU =
@@ -46,6 +51,9 @@ public class MapHolderFragment extends Fragment implements OnMapReadyCallback {
                     .build();
 
     private GoogleMap mMap;
+
+    @Bind(R.id.viewpager)
+    ViewPager mPager;
 
     public MapHolderFragment() {}
 
@@ -57,8 +65,9 @@ public class MapHolderFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_publics, container, false);
-        ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
+        ButterKnife.bind(this, view);
+
+        setupViewPager();
 
         TabLayout tabs = (TabLayout) view.findViewById(R.id.tabs);
         tabs.setTabTextColors(
@@ -68,29 +77,48 @@ public class MapHolderFragment extends Fragment implements OnMapReadyCallback {
         tabs.setSelectedTabIndicatorColor(
                 getActivity().getResources().getColor(R.color.colorAccent)
         );
-        tabs.setupWithViewPager(viewPager);
+        tabs.setupWithViewPager(mPager);
 
         return view;
     }
 
-    private void setupViewPager(ViewPager viewPager) {
+    private void setupViewPager() {
         Adapter adapter = new Adapter(getActivity().getSupportFragmentManager());
 
         SupportMapFragment mapFragment = SupportMapFragment.newInstance();
+        PlacesFragment placesFragment = PlacesFragment.newInstance();
+        placesFragment.setTargetFragment(this, 0);
 
-        adapter.addFragment(PlacesFragment.newInstance(), "Places");
+        adapter.addFragment(placesFragment, "Places");
         adapter.addFragment(mapFragment, "Map");
 
         mapFragment.getMapAsync(this);
 
-        viewPager.setAdapter(adapter);
+        mPager.setAdapter(adapter);
     }
 
     @Override
     public void onMapReady(GoogleMap map) {
         mMap = map;
-
         changeCamera(CameraUpdateFactory.newCameraPosition(SDU));
+    }
+
+    @Override
+    public void addPins(List<Pin> pins) {
+        mMap.clear();
+        for(Pin pin : pins) {
+            mMap.addMarker(new MarkerOptions().position(new LatLng(pin.lon, pin.lat)).title(pin.name));
+        }
+        changeCamera(CameraUpdateFactory.newCameraPosition(KASKELEN));
+        mPager.setCurrentItem(1);
+    }
+
+    @Override
+    public void showPlace(Pin pin) {
+        mMap.clear();
+        mMap.addMarker(new MarkerOptions().position(new LatLng(pin.lon, pin.lat)).title(pin.name).visible(true));
+        changeCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(pin.lon, pin.lat), 15.5f));
+        mPager.setCurrentItem(1);
     }
 
     static class Adapter extends FragmentStatePagerAdapter {

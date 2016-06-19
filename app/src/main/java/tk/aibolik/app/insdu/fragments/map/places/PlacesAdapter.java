@@ -1,6 +1,7 @@
 package tk.aibolik.app.insdu.fragments.map.places;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bignerdranch.expandablerecyclerview.Adapter.ExpandableRecyclerAdapter;
-import com.bignerdranch.expandablerecyclerview.Model.ParentObject;
+import com.bignerdranch.expandablerecyclerview.Model.ParentListItem;
 import com.bignerdranch.expandablerecyclerview.ViewHolder.ChildViewHolder;
 import com.bignerdranch.expandablerecyclerview.ViewHolder.ParentViewHolder;
 
@@ -29,11 +30,26 @@ public class PlacesAdapter
         extends ExpandableRecyclerAdapter<PlacesAdapter.CategoryViewHolder, PlacesAdapter.PlaceViewHolder> {
 
     private LayoutInflater mInflater;
+    private PlacesClickListener mListener;
 
-    public PlacesAdapter(Context context, List<ParentObject> parentItemList) {
-        super(context, parentItemList);
+    /**
+     * Primary constructor. Sets up {@link #mParentItemList} and {@link #mItemList}.
+     * <p/>
+     * Changes to {@link #mParentItemList} should be made through add/remove methods in
+     * {@link ExpandableRecyclerAdapter}
+     *
+     * @param parentItemList List of all {@link ParentListItem} objects to be
+     *                       displayed in the RecyclerView that this
+     *                       adapter is linked to
+     */
+    public PlacesAdapter(Context context,
+                         @NonNull List<? extends ParentListItem> parentItemList,
+                         PlacesClickListener listener) {
+        super(parentItemList);
         mInflater = LayoutInflater.from(context);
+        mListener = listener;
     }
+
 
     @Override
     public CategoryViewHolder onCreateParentViewHolder(ViewGroup viewGroup) {
@@ -48,18 +64,31 @@ public class PlacesAdapter
     }
 
     @Override
-    public void onBindParentViewHolder(CategoryViewHolder holder, int i, Object o) {
-        Category category = (Category) o;
+    public void onBindParentViewHolder(CategoryViewHolder holder, int position, ParentListItem item) {
+        final Category category = (Category) item;
         holder.name.setText(category.name);
         holder.desc.setText(category.description);
+        holder.map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onCategoryClick(category.category);
+            }
+        });
     }
 
     @Override
     public void onBindChildViewHolder(PlaceViewHolder holder, int i, Object o) {
-        Place place = (Place) o;
+        final Place place = (Place) o;
         holder.name.setText(place.name);
         holder.desc.setText(place.desc);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onPlaceClick(place.id);
+            }
+        });
     }
+
 
     public class CategoryViewHolder extends ParentViewHolder {
 
@@ -69,6 +98,8 @@ public class PlacesAdapter
         public TextView desc;
         @Bind(R.id.icon)
         public ImageView icon;
+        @Bind(R.id.map)
+        public ImageView map;
 
         public CategoryViewHolder(View itemView) {
             super(itemView);
@@ -86,6 +117,19 @@ public class PlacesAdapter
         public PlaceViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+
+//            itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    listener.onChildClick(getAdapterPosition());
+//                }
+//            });
         }
+
+    }
+
+    public interface PlacesClickListener {
+        void onCategoryClick(int categoryId);
+        void onPlaceClick(int placeId);
     }
 }

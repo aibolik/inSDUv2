@@ -10,10 +10,16 @@ import android.view.ViewGroup;
 
 import com.hannesdorfmann.mosby.mvp.MvpFragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import tk.aibolik.app.insdu.R;
+import tk.aibolik.app.insdu.fragments.map.MapChangeListener;
 import tk.aibolik.app.insdu.models.places.Category;
+import tk.aibolik.app.insdu.models.places.Pin;
+import tk.aibolik.app.insdu.models.places.Place;
 
 /**
  * Created by Aibol Kussain on Jun 18, 2016.
@@ -22,9 +28,11 @@ import tk.aibolik.app.insdu.models.places.Category;
  */
 public class PlacesFragment
         extends MvpFragment<PlacesView, PlacesPresenter>
-        implements PlacesView {
+        implements PlacesView, PlacesAdapter.PlacesClickListener {
 
     private static final String TAG = PlacesFragment.class.getSimpleName();
+
+    private MapChangeListener mListener;
 
     @Bind(R.id.places)
     RecyclerView mPlaces;
@@ -47,15 +55,46 @@ public class PlacesFragment
         View view = inflater.inflate(R.layout.fragment_places, container, false);
         ButterKnife.bind(this, view);
 
+        mListener = (MapChangeListener) getTargetFragment();
+
         PlacesAdapter adapter = new PlacesAdapter(
                 getContext(),
-                Category.createCategories()
+                Category.createCategories(),
+                this
         );
+
         mPlaces.setLayoutManager(new LinearLayoutManager(getContext()));
         mPlaces.setHasFixedSize(true);
         mPlaces.setAdapter(adapter);
 
         return view;
     }
+
+    @Override
+    public void onCategoryClick(int categoryId) {
+        ArrayList<Place> places = Place.createPlaces();
+        List<Pin> pins = new ArrayList<>();
+        for(Place place : places) {
+            if(place.categoryId == categoryId) {
+                pins.add(new Pin(place.name, place.lon, place.lat));
+            }
+        }
+        mListener.addPins(pins);
+
+    }
+
+    @Override
+    public void onPlaceClick(int placeId) {
+        ArrayList<Place> places = Place.createPlaces();
+        Pin res = null;
+        for(Place place : places) {
+            if(place.id == placeId) {
+                res = new Pin(place.name, place.lon, place.lat);
+                break;
+            }
+        }
+        mListener.showPlace(res);
+    }
+
 
 }
