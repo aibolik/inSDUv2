@@ -19,7 +19,7 @@ public class Category implements ParentListItem {
     public static final int PHARMACIES = 2;
     public static final int HAIRSHOPS = 3;
     public static final int CAR_SERVICES = 4;
-    public static final int ENTERTAINMENT = 0;
+    public static final int ENTERTAINMENT = 5;
 
     public int category;
     public String name;

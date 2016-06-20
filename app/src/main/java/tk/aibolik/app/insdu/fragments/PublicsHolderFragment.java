@@ -38,7 +38,7 @@ public class PublicsHolderFragment extends Fragment {
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_publics, container, false);
 
-        ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
+        final ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
         TabLayout tabs = (TabLayout) view.findViewById(R.id.tabs);
@@ -57,7 +57,6 @@ public class PublicsHolderFragment extends Fragment {
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getActivity().getSupportFragmentManager());
         viewPager.setOffscreenPageLimit(2);
-
 
         Bundle sdu = new Bundle();
         sdu.putString(PublicFragment.KEY_TITLE, "SDU");

@@ -87,14 +87,13 @@ public class MapHolderFragment
 
         SupportMapFragment mapFragment = SupportMapFragment.newInstance();
         PlacesFragment placesFragment = PlacesFragment.newInstance();
-        placesFragment.setTargetFragment(this, 0);
+        mapFragment.getMapAsync(this);
 
         adapter.addFragment(placesFragment, "Places");
         adapter.addFragment(mapFragment, "Map");
-
-        mapFragment.getMapAsync(this);
-
         mPager.setAdapter(adapter);
+
+
     }
 
     @Override

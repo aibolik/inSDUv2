@@ -33,7 +33,8 @@
             android:id="@+id/contentFrame"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            />
 
         <include layout="@layout/toolbar_shadow"/>
 
@@ -45,6 +46,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        app:itemBackground="@color/transparent"
         app:headerLayout="@layout/navheader"
         app:menu="@menu/activity_navigation_drawer"/>
 </android.support.v4.widget.DrawerLayout>

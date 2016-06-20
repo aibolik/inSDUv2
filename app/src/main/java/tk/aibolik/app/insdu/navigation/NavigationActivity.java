@@ -51,7 +51,8 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
             setupDrawerContent(navigationView);
         }
 
-        initFragment(InfoFragment.newInstance());
+        onNavigationItemSelected(navigationView.getMenu().getItem(0));
+//        initFragment(InfoFragment.newInstance());
     }
 
     private void initFragment(Fragment fragment) {
