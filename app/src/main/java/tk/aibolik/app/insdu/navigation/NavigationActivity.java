@@ -23,7 +23,7 @@ import tk.aibolik.app.insdu.fragments.InfoFragment;
 import tk.aibolik.app.insdu.fragments.PublicsHolderFragment;
 import tk.aibolik.app.insdu.fragments.map.MapHolderFragment;
 
-public class NavigationActivity extends AppCompatActivity {
+public class NavigationActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Bind(R.id.drawer)
     DrawerLayout mDrawerLayout;
@@ -51,7 +51,7 @@ public class NavigationActivity extends AppCompatActivity {
             setupDrawerContent(navigationView);
         }
 
-        //initFragment(InfoFragment.newInstance());
+        initFragment(InfoFragment.newInstance());
     }
 
     private void initFragment(Fragment fragment) {
@@ -68,36 +68,7 @@ public class NavigationActivity extends AppCompatActivity {
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        Log.d("inSDU", "onNavigationItemSelected: ");
-                        Fragment fragment = null;
-                        switch (menuItem.getItemId()) {
-                            case R.id.nav_info:
-                                fragment = InfoFragment.newInstance();
-                                break;
-                            case R.id.nav_map:
-                                fragment = MapHolderFragment.newInstance();
-                                break;
-                            case R.id.nav_publics:
-                                fragment = PublicsHolderFragment.newInstance();
-                                break;
-                            default:
-                                break;
-                        }
-                        if(fragment != null) {
-                            getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.contentFrame, fragment)
-                                    .commit();
-                        }
-                        // Close the navigation drawer when an item is selected.
-                        menuItem.setChecked(true);
-                        mDrawerLayout.closeDrawers();
-                        return true;
-                    }
-                });
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -109,5 +80,34 @@ public class NavigationActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        Log.d("inSDU", "onNavigationItemSelected: ");
+        Fragment fragment = null;
+        switch (item.getItemId()) {
+            case R.id.nav_info:
+                fragment = InfoFragment.newInstance();
+                break;
+            case R.id.nav_map:
+                fragment = MapHolderFragment.newInstance();
+                break;
+            case R.id.nav_publics:
+                fragment = PublicsHolderFragment.newInstance();
+                break;
+            default:
+                break;
+        }
+        if(fragment != null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.contentFrame, fragment)
+                    .commit();
+        }
+        // Close the navigation drawer when an item is selected.
+        setTitle(item.getTitle());
+        item.setChecked(true);
+        mDrawerLayout.closeDrawers();
+        return true;
     }
 }

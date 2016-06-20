@@ -16,6 +16,8 @@ public class Place {
     public double lon;
     public double lat;
 
+    public Place() {}
+
     public Place(int id, int categoryId, String name, String desc, double lon, double lat) {
         this.id = id;
         this.categoryId = categoryId;

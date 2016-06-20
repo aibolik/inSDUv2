@@ -49,6 +49,7 @@ public class PlacesFragment
         return new PlacesFragment();
     }
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -57,6 +58,18 @@ public class PlacesFragment
 
         mListener = (MapChangeListener) getTargetFragment();
 
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        presenter.getPlaces();
+    }
+
+    @Override
+    public void setPlaces(List<Place> places) {
+        Category.setPlaces(places);
         PlacesAdapter adapter = new PlacesAdapter(
                 getContext(),
                 Category.createCategories(),
@@ -66,28 +79,23 @@ public class PlacesFragment
         mPlaces.setLayoutManager(new LinearLayoutManager(getContext()));
         mPlaces.setHasFixedSize(true);
         mPlaces.setAdapter(adapter);
-
-        return view;
     }
 
     @Override
     public void onCategoryClick(int categoryId) {
-        ArrayList<Place> places = Place.createPlaces();
         List<Pin> pins = new ArrayList<>();
-        for(Place place : places) {
+        for(Place place : Category.sPlaces) {
             if(place.categoryId == categoryId) {
                 pins.add(new Pin(place.name, place.lon, place.lat));
             }
         }
         mListener.addPins(pins);
-
     }
 
     @Override
     public void onPlaceClick(int placeId) {
-        ArrayList<Place> places = Place.createPlaces();
         Pin res = null;
-        for(Place place : places) {
+        for(Place place : Category.sPlaces) {
             if(place.id == placeId) {
                 res = new Pin(place.name, place.lon, place.lat);
                 break;

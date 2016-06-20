@@ -2,6 +2,10 @@ package tk.aibolik.app.insdu.fragments.map.places;
 
 import com.hannesdorfmann.mosby.mvp.MvpView;
 
+import java.util.List;
+
+import tk.aibolik.app.insdu.models.places.Place;
+
 /**
  * Created by Aibol Kussain on Jun 19, 2016.
  * Working on "inSDUv2". Mars Studio
@@ -9,6 +13,6 @@ import com.hannesdorfmann.mosby.mvp.MvpView;
  */
 public interface PlacesView extends MvpView {
 
-
+    void setPlaces(List<Place> places);
 
 }

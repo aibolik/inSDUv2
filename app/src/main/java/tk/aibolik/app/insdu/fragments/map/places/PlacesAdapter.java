@@ -68,6 +68,7 @@ public class PlacesAdapter
         final Category category = (Category) item;
         holder.name.setText(category.name);
         holder.desc.setText(category.description);
+        holder.icon.setImageResource(category.drawableId);
         holder.map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,13 +118,6 @@ public class PlacesAdapter
         public PlaceViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-
-//            itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    listener.onChildClick(getAdapterPosition());
-//                }
-//            });
         }
 
     }
