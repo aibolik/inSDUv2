@@ -64,7 +64,7 @@ public class PlacesFragment
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        presenter.getPlaces();
+        presenter.getPlaces(getContext());
     }
 
     @Override

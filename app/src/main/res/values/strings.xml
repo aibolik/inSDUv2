@@ -13,6 +13,10 @@
 
     <string name="error.message.no_network_connection">Your internet connection is poor</string>
 
+    <!-- SyncAdapter related -->
+    <string name="sync_account_type">insdu.aibolik.tk</string>
+    <string name="content_authority">tk.aibolik.app.insdu</string>
+
     <integer name="com_vk_sdk_AppId">5507683</integer>
     <string name="google_maps_api_key">AIzaSyClCG44PRv0xvcBqKILU0qMiVFeBDKND5c</string>
 </resources>

@@ -22,6 +22,7 @@ import tk.aibolik.app.insdu.R;
 import tk.aibolik.app.insdu.fragments.InfoFragment;
 import tk.aibolik.app.insdu.fragments.PublicsHolderFragment;
 import tk.aibolik.app.insdu.fragments.map.MapHolderFragment;
+import tk.aibolik.app.insdu.sync.AppSyncAdapter;
 
 public class NavigationActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -52,7 +53,8 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         }
 
         onNavigationItemSelected(navigationView.getMenu().getItem(0));
-//        initFragment(InfoFragment.newInstance());
+
+        AppSyncAdapter.initializeSyncAdapter(this);
     }
 
     private void initFragment(Fragment fragment) {
