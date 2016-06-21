@@ -1,4 +1,4 @@
-package tk.aibolik.app.insdu.fragments;
+package tk.aibolik.app.insdu.navigation.publics;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tk.aibolik.app.insdu.R;
-import tk.aibolik.app.insdu.fragments.publics.PublicFragment;
 
 /**
  * Created by Aibol Kussain on Jun 09, 2016.
@@ -59,19 +58,19 @@ public class PublicsHolderFragment extends Fragment {
         viewPager.setOffscreenPageLimit(2);
 
         Bundle sdu = new Bundle();
-        sdu.putString(PublicFragment.KEY_TITLE, "SDU");
-        sdu.putString(PublicFragment.KEY_PAGE_ID, "-23192814");
-        adapter.addFragment(PublicFragment.newInstance(sdu), "SDU");
+        sdu.putString(PublicsFragment.KEY_TITLE, "SDU");
+        sdu.putString(PublicsFragment.KEY_PAGE_ID, "-23192814");
+        adapter.addFragment(PublicsFragment.newInstance(sdu), "SDU");
 
         Bundle sduLife = new Bundle();
-        sduLife.putString(PublicFragment.KEY_TITLE, "SDU Life");
-        sduLife.putString(PublicFragment.KEY_PAGE_ID, "-53746469");
-        adapter.addFragment(PublicFragment.newInstance(sduLife), "SDU Life");
+        sduLife.putString(PublicsFragment.KEY_TITLE, "SDU Life");
+        sduLife.putString(PublicsFragment.KEY_PAGE_ID, "-53746469");
+        adapter.addFragment(PublicsFragment.newInstance(sduLife), "SDU Life");
 
         Bundle sduLove = new Bundle();
-        sduLove.putString(PublicFragment.KEY_TITLE, "SDU Love");
-        sduLove.putString(PublicFragment.KEY_PAGE_ID, "-61889571");
-        adapter.addFragment(PublicFragment.newInstance(sduLove), "SDU Love");
+        sduLove.putString(PublicsFragment.KEY_TITLE, "SDU Love");
+        sduLove.putString(PublicsFragment.KEY_PAGE_ID, "-61889571");
+        adapter.addFragment(PublicsFragment.newInstance(sduLove), "SDU Love");
         viewPager.setAdapter(adapter);
     }
 

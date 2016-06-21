@@ -1,4 +1,4 @@
-package tk.aibolik.app.insdu.fragments.map.places;
+package tk.aibolik.app.insdu.navigation.map.places;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,7 +17,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import tk.aibolik.app.insdu.R;
-import tk.aibolik.app.insdu.fragments.map.MapChangeListener;
+import tk.aibolik.app.insdu.navigation.map.MapChangeListener;
 import tk.aibolik.app.insdu.models.places.Category;
 import tk.aibolik.app.insdu.models.places.Pin;
 import tk.aibolik.app.insdu.models.places.Place;

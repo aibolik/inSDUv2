@@ -1,5 +1,6 @@
 package tk.aibolik.app.insdu.models.post;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,7 @@ import java.util.List;
  * Working on "inSDUv2". Mars Studio
  * You can contact me at: aibolikdev@gmail.com
  */
-public class Story {
+public class Story implements Serializable {
 
     int id;
 

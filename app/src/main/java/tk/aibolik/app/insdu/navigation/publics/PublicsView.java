@@ -1,4 +1,4 @@
-package tk.aibolik.app.insdu.fragments.publics;
+package tk.aibolik.app.insdu.navigation.publics;
 
 import com.hannesdorfmann.mosby.mvp.MvpView;
 
@@ -13,7 +13,7 @@ import tk.aibolik.app.insdu.models.post.Story;
  * Working on "inSDUv2". Mars Studio
  * You can contact me at: aibolikdev@gmail.com
  */
-public interface PublicView extends MvpView {
+public interface PublicsView extends MvpView {
 
     void showMessage(String msg);
     void setProgress(boolean active);

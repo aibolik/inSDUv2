@@ -1,4 +1,4 @@
-package tk.aibolik.app.insdu.fragments.publics;
+package tk.aibolik.app.insdu.navigation.publics;
 
 import android.util.Log;
 
@@ -25,7 +25,7 @@ import tk.aibolik.app.insdu.models.post.Story;
  * Working on "inSDUv2". Mars Studio
  * You can contact me at: aibolikdev@gmail.com
  */
-public class PublicPresenter extends MvpBasePresenter<PublicView> {
+public class PublicPresenter extends MvpBasePresenter<PublicsView> {
 
     private static final String TAG = PublicPresenter.class.getSimpleName();
 
@@ -61,6 +61,9 @@ public class PublicPresenter extends MvpBasePresenter<PublicView> {
 
                     for (int i = 0; i < items.length(); i++) {
                         JSONObject item = items.getJSONObject(i);
+                        if(item.has("copy_history")) {
+                            continue;
+                        }
                         JSONArray attachments = item.optJSONArray("attachments");
                         Story story = new Story();
                         List<Attachment> attachmentsList = new ArrayList<Attachment>();

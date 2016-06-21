@@ -1,4 +1,4 @@
-package tk.aibolik.app.insdu.fragments.map.places;
+package tk.aibolik.app.insdu.navigation.map.places;
 
 import android.content.Context;
 import android.os.AsyncTask;

@@ -3,21 +3,19 @@
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Permissions required by the sync adapter -->
-    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
-    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
-    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
 
-    <!--Permissions required to make our UI more friendly-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
+    <!-- Permissions required to make our UI more friendly -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
-    <!--<permission-->
-        <!--android:name="kz.aibol.sunshine.ACCESS_WEATHER_DATA"-->
-        <!--android:label="Access to weather data"-->
-        <!--android:protectionLevel="dangerous" />-->
-
+    <!-- <permission -->
+    <!-- android:name="kz.aibol.sunshine.ACCESS_WEATHER_DATA" -->
+    <!-- android:label="Access to weather data" -->
+    <!-- android:protectionLevel="dangerous" /> -->
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -25,7 +23,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_api_key"/>
@@ -42,34 +39,42 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".InfoDetailActivity"
+            android:name=".navigation.information.InfoDetailActivity"
             android:parentActivityName=".navigation.NavigationActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".navigation.NavigationActivity"/>
         </activity>
+
+        <activity
+            android:name=".navigation.publics.detail.PostDetailActivity"
+            android:screenOrientation="portrait"
+            android:label=""
+            android:theme="@style/AppTheme">
+        </activity>
+
         <activity
             android:name="com.vk.sdk.VKServiceActivity"
             android:label="ServiceActivity"
             android:theme="@style/VK.Transparent"/>
 
-        
         <provider
-            android:authorities="@string/content_authority"
             android:name=".sync.StubProvider"
+            android:authorities="@string/content_authority"
             android:exported="false"
-            android:syncable="true"
-            />
+            android:syncable="true"/>
 
         <!-- SyncAdapter's dummy authentication service -->
         <service android:name=".sync.StubAuthenticatorService">
             <intent-filter>
-                <action android:name="android.accounts.AccountAuthenticator" />
+                <action android:name="android.accounts.AccountAuthenticator"/>
             </intent-filter>
+
             <meta-data
                 android:name="android.accounts.AccountAuthenticator"
-                android:resource="@xml/authenticator" />
+                android:resource="@xml/authenticator"/>
         </service>
 
         <!-- The SyncAdapter service -->
@@ -77,11 +82,12 @@
             android:name=".sync.AppSyncService"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.content.SyncAdapter" />
+                <action android:name="android.content.SyncAdapter"/>
             </intent-filter>
+
             <meta-data
                 android:name="android.content.SyncAdapter"
-                android:resource="@xml/syncadapter" />
+                android:resource="@xml/syncadapter"/>
         </service>
 
     </application>

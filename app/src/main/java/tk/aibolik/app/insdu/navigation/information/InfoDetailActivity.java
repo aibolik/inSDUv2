@@ -1,4 +1,4 @@
-package tk.aibolik.app.insdu;
+package tk.aibolik.app.insdu.navigation.information;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import tk.aibolik.app.insdu.R;
 import tk.aibolik.app.insdu.models.info.InfoItem;
 
 public class InfoDetailActivity extends AppCompatActivity {

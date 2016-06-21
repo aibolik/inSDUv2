@@ -17,10 +17,10 @@ import android.view.View;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import tk.aibolik.app.insdu.R;
-import tk.aibolik.app.insdu.fragments.InfoFragment;
-import tk.aibolik.app.insdu.fragments.PortalFragment;
-import tk.aibolik.app.insdu.fragments.PublicsHolderFragment;
-import tk.aibolik.app.insdu.fragments.map.MapHolderFragment;
+import tk.aibolik.app.insdu.navigation.information.InfoFragment;
+import tk.aibolik.app.insdu.navigation.map.MapHolderFragment;
+import tk.aibolik.app.insdu.navigation.portal.PortalFragment;
+import tk.aibolik.app.insdu.navigation.publics.PublicsHolderFragment;
 import tk.aibolik.app.insdu.sync.AppSyncAdapter;
 
 public class NavigationActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {

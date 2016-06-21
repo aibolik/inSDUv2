@@ -1,4 +1,4 @@
-package tk.aibolik.app.insdu.fragments;
+package tk.aibolik.app.insdu.navigation.portal;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

@@ -1,4 +1,4 @@
-package tk.aibolik.app.insdu.fragments.map;
+package tk.aibolik.app.insdu.navigation.map;
 
 import java.util.List;
 

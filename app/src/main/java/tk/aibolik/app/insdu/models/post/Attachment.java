@@ -1,11 +1,13 @@
 package tk.aibolik.app.insdu.models.post;
 
+import java.io.Serializable;
+
 /**
  * Created by Aibol Kussain on Jun 14, 2016.
  * Working on "inSDUv2". Mars Studio
  * You can contact me at: aibolikdev@gmail.com
  */
-public class Attachment {
+public class Attachment implements Serializable {
 
     public static final String TYPE_PHOTO = "photo";
     public static final String TYPE_VIDEO = "video";

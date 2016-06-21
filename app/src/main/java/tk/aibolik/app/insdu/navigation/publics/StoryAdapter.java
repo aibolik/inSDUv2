@@ -1,9 +1,10 @@
-package tk.aibolik.app.insdu.fragments.publics;
+package tk.aibolik.app.insdu.navigation.publics;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,12 +28,12 @@ import tk.aibolik.app.insdu.models.post.Story;
 public class StoryAdapter
         extends RecyclerView.Adapter<StoryAdapter.ViewHolder> {
 
-    ViewHolder.ViewHolderClickListener mListener;
+    ViewHolderClickListener mListener;
     private String mTitle;
     private List<Story> mStories;
     private LinkedHashMap<Integer, List<Attachment>> mMap;
 
-    public StoryAdapter(String storyTitle, ViewHolder.ViewHolderClickListener listener) {
+    public StoryAdapter(String storyTitle, ViewHolderClickListener listener) {
         mTitle = storyTitle;
         mListener = listener;
         mStories = new ArrayList<>();
@@ -88,6 +89,7 @@ public class StoryAdapter
             }
             Picasso.with(holder.image.getContext()).
                     load(attachments.get(0).getCover_url())
+                    .placeholder(R.drawable.image_placeholder)
                     .error(R.drawable.image_error)
                     .into(holder.image);
         }
@@ -103,7 +105,7 @@ public class StoryAdapter
         return mStories.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // each data item is just a string in this case
 
         @Bind(R.id.card_title)
@@ -120,6 +122,8 @@ public class StoryAdapter
         public TextView commentCount;
         @Bind(R.id.card_image)
         public ImageView image;
+        @Bind(R.id.read_more)
+        Button mButton;
 
         public ViewHolderClickListener mListener;
 
@@ -128,15 +132,20 @@ public class StoryAdapter
             v.setOnClickListener(this);
             mListener = listener;
             ButterKnife.bind(this, v);
+            mButton.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            mListener.onClick(getAdapterPosition());
+            mListener.onClick(
+                    mStories.get(getAdapterPosition()),
+                    mMap.get(mStories.get(getAdapterPosition()).getId())
+            );
         }
 
-        public interface ViewHolderClickListener {
-            void onClick(int position);
-        }
+    }
+
+    public interface ViewHolderClickListener {
+        void onClick(Story story, List<Attachment> attachments);
     }
 }

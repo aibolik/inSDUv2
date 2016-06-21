@@ -1,5 +1,6 @@
-package tk.aibolik.app.insdu.fragments.publics;
+package tk.aibolik.app.insdu.navigation.publics;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
@@ -26,22 +27,23 @@ import tk.aibolik.app.insdu.Utility;
 import tk.aibolik.app.insdu.custom.EndlessRecyclerViewScrollListener;
 import tk.aibolik.app.insdu.models.post.Attachment;
 import tk.aibolik.app.insdu.models.post.Story;
+import tk.aibolik.app.insdu.navigation.publics.detail.PostDetailActivity;
 
 /**
  * Created by Aibol Kussain on Jun 09, 2016.
  * Working on "inSDUv2". Mars Studio
  * You can contact me at: aibolikdev@gmail.com
  */
-public class PublicFragment
-        extends MvpFragment<PublicView, PublicPresenter>
-        implements PublicView, StoryAdapter.ViewHolder.ViewHolderClickListener {
+public class PublicsFragment
+        extends MvpFragment<PublicsView, PublicPresenter>
+        implements PublicsView, StoryAdapter.ViewHolderClickListener {
 
-    private static final String TAG = PublicFragment.class.getSimpleName();
+    private static final String TAG = PublicsFragment.class.getSimpleName();
 
     public static final String KEY_TITLE = "title";
     public static final String KEY_PAGE_ID = "pageId";
 
-    public PublicFragment() {
+    public PublicsFragment() {
     }
 
     CoordinatorLayout mRootView;
@@ -65,9 +67,9 @@ public class PublicFragment
         return new PublicPresenter();
     }
 
-    public static PublicFragment newInstance(Bundle params) {
+    public static PublicsFragment newInstance(Bundle params) {
         Log.d(TAG, "newInstance: ");
-        PublicFragment fragment = new PublicFragment();
+        PublicsFragment fragment = new PublicsFragment();
         fragment.setArguments(params);
         return fragment;
     }
@@ -167,7 +169,11 @@ public class PublicFragment
     }
 
     @Override
-    public void onClick(int position) {
-        showMessage("clicked - " + position);
+    public void onClick(Story story, List<Attachment> attachments) {
+        Intent intent = new Intent(getActivity(), PostDetailActivity.class);
+        story.setAttachments(attachments);
+        intent.putExtra(KEY_TITLE, mPageTitle);
+        intent.putExtra(PostDetailActivity.EXTRA_STORY, story);
+        startActivity(intent);
     }
 }

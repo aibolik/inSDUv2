@@ -1,4 +1,4 @@
-package tk.aibolik.app.insdu.fragments;
+package tk.aibolik.app.insdu.navigation.information;
 
 
 import android.content.Context;
@@ -18,7 +18,6 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import tk.aibolik.app.insdu.InfoDetailActivity;
 import tk.aibolik.app.insdu.R;
 import tk.aibolik.app.insdu.models.info.InfoItem;
 
