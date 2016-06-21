@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +57,10 @@ public class PlacesFragment
         View view = inflater.inflate(R.layout.fragment_places, container, false);
         ButterKnife.bind(this, view);
 
-        mListener = (MapChangeListener) getTargetFragment();
+        Log.d(TAG, "parentFragment" + getParentFragment());
+
+        mListener = (MapChangeListener) getParentFragment();
+
 
         return view;
     }
@@ -64,6 +68,7 @@ public class PlacesFragment
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         presenter.getPlaces(getContext());
     }
 
@@ -103,6 +108,5 @@ public class PlacesFragment
         }
         mListener.showPlace(res);
     }
-
 
 }

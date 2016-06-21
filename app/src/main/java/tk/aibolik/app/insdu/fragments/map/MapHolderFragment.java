@@ -83,10 +83,11 @@ public class MapHolderFragment
     }
 
     private void setupViewPager() {
-        Adapter adapter = new Adapter(getActivity().getSupportFragmentManager());
+        Adapter adapter = new Adapter(getChildFragmentManager());
 
         SupportMapFragment mapFragment = SupportMapFragment.newInstance();
         PlacesFragment placesFragment = PlacesFragment.newInstance();
+//        placesFragment.setTargetFragment(this, 0);
         mapFragment.getMapAsync(this);
 
         adapter.addFragment(placesFragment, "Places");
@@ -127,6 +128,7 @@ public class MapHolderFragment
         public Adapter(FragmentManager manager) {
             super(manager);
         }
+
 
         @Override
         public Fragment getItem(int position) {
