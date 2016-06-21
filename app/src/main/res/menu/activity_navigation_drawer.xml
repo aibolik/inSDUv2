@@ -11,6 +11,10 @@
             android:icon="@drawable/ic_menu_map"
             android:title="Map guide"/>
         <item
+            android:id="@+id/nav_portal"
+            android:icon="@drawable/ic_menu_web"
+            android:title="SDU Portal"/>
+        <item
             android:id="@+id/nav_publics"
             android:icon="@drawable/ic_menu_info"
             android:title="SDU publics"/>

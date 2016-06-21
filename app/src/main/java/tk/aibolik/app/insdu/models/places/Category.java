@@ -44,7 +44,7 @@ public class Category implements ParentListItem {
         categories.add(new Category(0, "Eat out", "Places to eat out around SDU", R.drawable.ic_local_dining));
         categories.add(new Category(1, "ATM and Banks", "ATMs to withdraw money and banks for money services", R.drawable.ic_atm));
         categories.add(new Category(2, "Pharmacies", "Places to buy medicine and consult about your health", R.drawable.ic_pharmacy));
-        categories.add(new Category(3, "Hair shops", "Places to have a hair cut", R.drawable.ic_pharmacy));
+        categories.add(new Category(3, "Hair shops", "Places to have a hair cut", R.drawable.ic_hairshop));
         categories.add(new Category(4, "Car services", "Gas stations and car washes for auto owners", R.drawable.ic_car));
         categories.add(new Category(5, "Entertainment", "Places to have a rest with friends", R.drawable.ic_entertainment));
 

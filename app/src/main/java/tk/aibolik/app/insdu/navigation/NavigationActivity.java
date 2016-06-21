@@ -4,8 +4,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -20,6 +18,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import tk.aibolik.app.insdu.R;
 import tk.aibolik.app.insdu.fragments.InfoFragment;
+import tk.aibolik.app.insdu.fragments.PortalFragment;
 import tk.aibolik.app.insdu.fragments.PublicsHolderFragment;
 import tk.aibolik.app.insdu.fragments.map.MapHolderFragment;
 import tk.aibolik.app.insdu.sync.AppSyncAdapter;
@@ -57,13 +56,6 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         AppSyncAdapter.initializeSyncAdapter(this);
     }
 
-    private void initFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.add(R.id.contentFrame, fragment);
-        transaction.commit();
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.navigation, menu);
@@ -95,6 +87,9 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
                 break;
             case R.id.nav_map:
                 fragment = MapHolderFragment.newInstance();
+                break;
+            case R.id.nav_portal:
+                fragment = PortalFragment.newInstance();
                 break;
             case R.id.nav_publics:
                 fragment = PublicsHolderFragment.newInstance();
