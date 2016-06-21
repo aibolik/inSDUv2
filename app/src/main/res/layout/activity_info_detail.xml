@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingLeft="@dimen/article_keylines"
+            android:paddingLeft="54dp"
             android:paddingRight="@dimen/md_keylines"
             android:paddingTop="@dimen/md_keylines">
 

@@ -87,7 +87,6 @@ public class MapHolderFragment
 
         SupportMapFragment mapFragment = SupportMapFragment.newInstance();
         PlacesFragment placesFragment = PlacesFragment.newInstance();
-//        placesFragment.setTargetFragment(this, 0);
         mapFragment.getMapAsync(this);
 
         adapter.addFragment(placesFragment, "Places");
@@ -105,20 +104,24 @@ public class MapHolderFragment
 
     @Override
     public void addPins(List<Pin> pins) {
-        mMap.clear();
-        for(Pin pin : pins) {
-            mMap.addMarker(new MarkerOptions().position(new LatLng(pin.lon, pin.lat)).title(pin.name));
+        if(mMap != null) {
+            mMap.clear();
+            for (Pin pin : pins) {
+                mMap.addMarker(new MarkerOptions().position(new LatLng(pin.lon, pin.lat)).title(pin.name));
+            }
+            changeCamera(CameraUpdateFactory.newCameraPosition(KASKELEN));
+            mPager.setCurrentItem(1);
         }
-        changeCamera(CameraUpdateFactory.newCameraPosition(KASKELEN));
-        mPager.setCurrentItem(1);
     }
 
     @Override
     public void showPlace(Pin pin) {
-        mMap.clear();
-        mMap.addMarker(new MarkerOptions().position(new LatLng(pin.lon, pin.lat)).title(pin.name).visible(true));
-        changeCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(pin.lon, pin.lat), 15.5f));
-        mPager.setCurrentItem(1);
+        if(mMap != null) {
+            mMap.clear();
+            mMap.addMarker(new MarkerOptions().position(new LatLng(pin.lon, pin.lat)).title(pin.name).visible(true));
+            changeCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(pin.lon, pin.lat), 15.5f));
+            mPager.setCurrentItem(1);
+        }
     }
 
     static class Adapter extends FragmentStatePagerAdapter {

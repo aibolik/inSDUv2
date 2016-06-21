@@ -1,4 +1,4 @@
-package tk.aibolik.app.insdu.navigation.information;
+package tk.aibolik.app.insdu.navigation.information.detail;
 
 import android.os.Build;
 import android.os.Bundle;

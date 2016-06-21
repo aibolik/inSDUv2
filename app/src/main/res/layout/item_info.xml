@@ -44,8 +44,8 @@
             android:layout_marginRight="@dimen/md_keylines"
             android:layout_marginTop="@dimen/md_keylines"
             android:ellipsize="end"
-            android:singleLine="true"
-            android:textColor="@color/colorPrimary"
+            android:maxLines="4"
+            android:textColor="@color/text_primary"
             android:textSize="@dimen/article_subheading"
             tools:text="Action"/>
 
@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/card_text"
-            android:text="Action"
-            android:textColor="?attr/colorPrimary"/>
+            android:text="Read More"
+            android:textColor="?attr/colorAccent"/>
     </RelativeLayout>
 </android.support.v7.widget.CardView>

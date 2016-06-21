@@ -39,7 +39,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".navigation.information.InfoDetailActivity"
+            android:name=".navigation.information.detail.InfoDetailActivity"
             android:parentActivityName=".navigation.NavigationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">

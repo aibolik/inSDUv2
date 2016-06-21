@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import tk.aibolik.app.insdu.R;
 import tk.aibolik.app.insdu.models.info.InfoItem;
+import tk.aibolik.app.insdu.navigation.information.detail.InfoDetailActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -120,6 +122,7 @@ public class InfoFragment extends Fragment {
             public TextView title;
             public TextView description;
             public ImageView image;
+            public Button mButton;
 
             private InfoItemListener mItemListener;
 
@@ -129,7 +132,9 @@ public class InfoFragment extends Fragment {
                 title = (TextView) itemView.findViewById(R.id.card_title);
                 description = (TextView) itemView.findViewById(R.id.card_text);
                 image = (ImageView) itemView.findViewById(R.id.card_image);
+                mButton = (Button) itemView.findViewById(R.id.action_button);
                 itemView.setOnClickListener(this);
+                mButton.setOnClickListener(this);
             }
 
             @Override
